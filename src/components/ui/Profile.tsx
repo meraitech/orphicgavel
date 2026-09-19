@@ -4,6 +4,7 @@ import {
   PROFILE_TILE,
   PROFILE_TITLE,
 } from "@/components/ui/tokens";
+import Image from "next/image";
 import type { ReactNode } from "react";
 
 /**
@@ -29,29 +30,46 @@ export function ProfileGrid({ children }: { children: ReactNode }): ReactNode {
   );
 }
 
+type ProfileImage = {
+  src: string;
+  alt: string;
+};
+
 type ProfileCardProps = {
   initials?: string;
+  image?: ProfileImage;
   title: string;
   subtitle: string;
   desc?: string;
 };
 
 /**
- * Shared profile card used by both Teams and Investments — monogram tile
- * + title + subtitle, with an optional description. Pass `title` and the
- * monogram is derived automatically unless `initials` is given. To use a
- * real photo, replace the tile content with an `img`.
+ * Shared profile card used by both Teams and Investments — photo (or
+ * monogram fallback) tile + title + subtitle, with an optional
+ * description. Pass `title` and the monogram is derived automatically
+ * unless `initials` is given.
  */
 export function ProfileCard({
   initials,
+  image,
   title,
   subtitle,
   desc,
 }: ProfileCardProps): ReactNode {
   return (
     <div>
-      <div className={PROFILE_TILE} aria-hidden="true">
-        {initials ?? initialsOf(title)}
+      <div className={PROFILE_TILE}>
+        {image !== undefined ? (
+          <Image
+            src={image.src}
+            alt={image.alt}
+            fill
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+            className="object-cover object-top"
+          />
+        ) : (
+          <span aria-hidden="true">{initials ?? initialsOf(title)}</span>
+        )}
       </div>
       <p className={`${PROFILE_TITLE} mt-4`}>{title}</p>
       <p className={PROFILE_SUBTITLE}>{subtitle}</p>

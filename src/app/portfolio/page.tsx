@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { Card } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
+import { MediaCard } from "@/components/ui/MediaCard";
 import { PageHero } from "@/components/ui/PageHero";
 import { PageShell } from "@/components/ui/PageShell";
 import { ProfileCard, ProfileGrid } from "@/components/ui/Profile";
@@ -20,22 +20,12 @@ export const metadata: Metadata = {
     "The Orphic Gavel portfolio — official products we build and operate, plus investments in early companies.",
 };
 
-// TODO: replace with real products when ready.
 const PRODUCTS = [
   {
-    name: "Product 01",
-    desc: "A short description of the first official Orphic product.",
-    status: "In development",
-  },
-  {
-    name: "Product 02",
-    desc: "A short description of the second official Orphic product.",
-    status: "Planned",
-  },
-  {
-    name: "Product 03",
-    desc: "A short description of the third official Orphic product.",
-    status: "Planned",
+    name: "Merai",
+    href: "https://merai.tech",
+    bg: "/img/portfolio/official-products/merai-bg.jpg",
+    logo: "/img/portfolio/official-products/merai-logo.webp",
   },
 ];
 
@@ -59,16 +49,17 @@ export default function PortfolioPage() {
             title="Official products"
             desc="Software designed, built, and operated by Orphic."
           />
-          <ul className="mt-6 flex flex-col gap-4">
+          <ProfileGrid>
             {PRODUCTS.map((product) => (
-              <Card
+              <MediaCard
                 key={product.name}
-                title={product.name}
-                desc={product.desc}
-                badge={product.status}
+                name={product.name}
+                href={product.href}
+                bg={product.bg}
+                logo={product.logo}
               />
             ))}
-          </ul>
+          </ProfileGrid>
         </section>
 
         <section className="mt-12 sm:mt-16">

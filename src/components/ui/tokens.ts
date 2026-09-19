@@ -84,7 +84,7 @@ export const EMPTY_STATE_TITLE = "text-foreground text-sm font-medium";
 
 /** Profile photo/monogram tile. Swap the monogram for an `img` when portraits arrive. */
 export const PROFILE_TILE =
-  "bg-foreground text-background flex aspect-[4/3] w-full items-center justify-center rounded-lg text-4xl font-semibold tracking-tight";
+  "bg-foreground text-background relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-lg text-4xl font-semibold tracking-tight";
 
 /** Profile card title (person or company name). */
 export const PROFILE_TITLE = "text-foreground text-base font-semibold";

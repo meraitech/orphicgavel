@@ -2,6 +2,7 @@ export { Button } from "@/components/ui/Button";
 export { Card, StatusPill } from "@/components/ui/Card";
 export { Container } from "@/components/ui/Container";
 export { Eyebrow } from "@/components/ui/Eyebrow";
+export { MediaCard } from "@/components/ui/MediaCard";
 export { PageHero } from "@/components/ui/PageHero";
 export { PageShell } from "@/components/ui/PageShell";
 export { Row, RowList, LinkRow } from "@/components/ui/Rows";

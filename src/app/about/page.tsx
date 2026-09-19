@@ -25,9 +25,33 @@ const WHO_WE_ARE = [
 
 // TODO: replace monogram tiles with real portraits in `public/team/`.
 const TEAM = [
-  { initials: "YH", name: "Yusuf Hidral", role: "CEO" },
-  { initials: "RM", name: "Ranaufal Muha", role: "CTO" },
-  { initials: "FA", name: "Fajri Annafi", role: "COO" },
+  {
+    initials: "YH",
+    name: "Yusuf Hidral",
+    role: "CEO",
+    photo: {
+      src: "/img/teams/ceo.jpeg",
+      alt: "Yusuf Hidral, CEO of Orphic Gavel",
+    },
+  },
+  {
+    initials: "RM",
+    name: "Ranaufal Muha",
+    role: "CTO",
+    photo: {
+      src: "/img/teams/cto.webp",
+      alt: "Ranaufal Muha, CTO of Orphic Gavel",
+    },
+  },
+  {
+    initials: "FA",
+    name: "Fajri Annafi",
+    role: "COO",
+    photo: {
+      src: "/img/teams/coo.jpeg",
+      alt: "Fajri Annafi, COO of Orphic Gavel",
+    },
+  },
 ];
 
 export default function AboutPage() {
@@ -73,6 +97,7 @@ export default function AboutPage() {
                 <ProfileCard
                   key={member.name}
                   initials={member.initials}
+                  image={member.photo}
                   title={member.name}
                   subtitle={member.role}
                 />
