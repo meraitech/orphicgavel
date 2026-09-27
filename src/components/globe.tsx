@@ -2,8 +2,10 @@
 
 import { useReducedMotion } from "@/lib/motion";
 import { observeVisibility } from "@/lib/visibility";
+import { globeColors } from "@/lib/color";
+import { INVESTMENTS, PRODUCTS } from "@/data/portfolio";
 import createGlobe from "cobe";
-import { useTheme } from "next-themes";
+import Image from "next/image";
 import {
   useEffect,
   useRef,
@@ -15,23 +17,21 @@ import {
 type Member = {
   handle: string;
   location: [number, number];
-  avatar: string;
+  initials: string;
+  /** Square logo path; empty string means "not ready" → monogram. */
+  logo: string;
 };
 
-const MEMBERS: Member[] = [
-  { handle: "@maya.counsel", location: [37.78, -122.44], avatar: "https://i.pravatar.cc/96?img=5" },
-  { handle: "@leo.esq", location: [40.71, -74.01], avatar: "https://i.pravatar.cc/96?img=12" },
-  { handle: "@noor.partners", location: [51.51, -0.13], avatar: "https://i.pravatar.cc/96?img=32" },
-  { handle: "@kenji.lex", location: [35.68, 139.69], avatar: "https://i.pravatar.cc/96?img=68" },
-  { handle: "@ana.advocacia", location: [-23.55, -46.63], avatar: "https://i.pravatar.cc/96?img=45" },
-  { handle: "@priya.chambers", location: [19.08, 72.88], avatar: "https://i.pravatar.cc/96?img=24" },
-  { handle: "@sam.barrister", location: [-33.87, 151.21], avatar: "https://i.pravatar.cc/96?img=15" },
-  { handle: "@diego.bufete", location: [19.43, -99.13], avatar: "https://i.pravatar.cc/96?img=52" },
-  { handle: "@yuki.lawlab", location: [1.35, 103.82], avatar: "https://i.pravatar.cc/96?img=60" },
-  { handle: "@thabo.legal", location: [-26.2, 28.04], avatar: "https://i.pravatar.cc/96?img=64" },
-  { handle: "@freya.nordlex", location: [59.91, 10.75], avatar: "https://i.pravatar.cc/96?img=20" },
-  { handle: "@omar.menalaw", location: [25.2, 55.27], avatar: "https://i.pravatar.cc/96?img=27" },
-];
+// Single source: portfolio data. Locations in the data file are temporary
+// spread placeholders so all labels stay visible.
+const MEMBERS: Member[] = [...PRODUCTS, ...INVESTMENTS].map(
+  ({ handle, location, initials, logo }) => ({
+    handle,
+    location,
+    initials,
+    logo,
+  })
+);
 
 const GLOBE_R = 0.8;
 const MARKER_ELEVATION = 0.0;
@@ -89,8 +89,6 @@ export function Globe({ className }: { className?: string }): ReactNode {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const prefersReducedMotion = useReducedMotion();
   const mounted = useIsMounted();
-  const { resolvedTheme } = useTheme();
-  const isDark = resolvedTheme === "dark";
   const [labels, setLabels] = useState<Projected[]>(() =>
     MEMBERS.map(() => ({ x: 0.5, y: 0.5, front: -1, visible: false }))
   );
@@ -120,13 +118,13 @@ export function Globe({ className }: { className?: string }): ReactNode {
       height: width * 2,
       phi: 0,
       theta: THETA,
-      dark: isDark ? 1 : 0,
+      dark: 1,
       diffuse: 2.0,
       mapSamples: 20000,
-      mapBrightness: isDark ? 1 : 0.5,
-      baseColor: isDark ? [0.95, 0.45, 0.12] : [1, 1, 1],
-      markerColor: [0.96, 0.45, 0.12],
-      glowColor: isDark ? [0.35, 0.18, 0.08] : [0.99, 0.7, 0.42],
+      mapBrightness: 1,
+      baseColor: globeColors().baseColor,
+      markerColor: globeColors().markerColor,
+      glowColor: globeColors().glowColor,
       markers: [],
     });
 
@@ -177,7 +175,7 @@ export function Globe({ className }: { className?: string }): ReactNode {
       unobserve();
       globe.destroy();
     };
-  }, [prefersReducedMotion, mounted, isDark]);
+  }, [prefersReducedMotion, mounted]);
 
   const onPointerDown = (e: React.PointerEvent<HTMLCanvasElement>): void => {
     pointerInteracting.current = e.clientX - pointerMovement.current;
@@ -230,15 +228,18 @@ export function Globe({ className }: { className?: string }): ReactNode {
               filter: `blur(${blur}px)`,
             }}
           >
-            <span className="bg-muted border-border relative z-2 h-9 w-9 shrink-0 overflow-hidden rounded-sm border-2 shadow-sm sm:h-11 sm:w-11">
-              <img
-                src={member.avatar}
-                alt=""
-                width={44}
-                height={44}
-                loading="lazy"
-                className="h-full w-full object-cover"
-              />
+            <span className="bg-muted border-border text-foreground relative z-2 flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-sm border-2 font-mono text-xs font-semibold shadow-sm sm:h-11 sm:w-11">
+              {member.logo ? (
+                <Image
+                  src={member.logo}
+                  alt={`${member.handle} logo`}
+                  fill
+                  sizes="44px"
+                  className="object-cover"
+                />
+              ) : (
+                member.initials
+              )}
             </span>
             <span className="border-border bg-background/90 text-foreground relative -left-2 hidden rounded-sm border-2 px-2.5 py-1 font-mono text-xs font-medium tracking-tight shadow-sm backdrop-blur-sm sm:inline-block">
               {member.handle}

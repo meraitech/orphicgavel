@@ -28,9 +28,9 @@ export function Creators(): ReactNode {
   const item: Variants = prefersReducedMotion
     ? { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { duration: 0 } } }
     : {
-        hidden: { opacity: 0, y: 20 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } },
-      };
+      hidden: { opacity: 0, y: 20 },
+      visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } },
+    };
 
   return (
     <section className="flex min-h-dvh w-full flex-1 flex-col">
@@ -44,14 +44,14 @@ export function Creators(): ReactNode {
         >
           <motion.p
             variants={item}
-            className={`${EYEBROW_TEXT} justify-center`}
+            className={`${EYEBROW_TEXT} justify-center text-ring`}
           >
-            <span aria-hidden="true" className="bg-accent h-1.5 w-1.5" />
+            <span aria-hidden="true" className="bg-ring h-1.5 w-1.5" />
             Holding company — Indonesia
           </motion.p>
 
           <motion.h1 variants={item} className={HERO_TITLE_CENTER}>
-            Orphic builds products and backs founders
+            Orphic builds products
           </motion.h1>
 
           <motion.p variants={item} className={HERO_LEAD_CENTER}>

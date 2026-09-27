@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
+import { INVESTMENTS, PRODUCTS } from "@/data/portfolio";
 import { MediaCard } from "@/components/ui/MediaCard";
 import { PageHero } from "@/components/ui/PageHero";
 import { PageShell } from "@/components/ui/PageShell";
@@ -19,18 +20,6 @@ export const metadata: Metadata = {
   description:
     "The Orphic Gavel portfolio — official products we build and operate, plus investments in early companies.",
 };
-
-const PRODUCTS = [
-  {
-    name: "Merai",
-    href: "https://merai.tech",
-    bg: "/img/portfolio/official-products/merai-bg.jpg",
-    logo: "/img/portfolio/official-products/merai-logo.webp",
-  },
-];
-
-// TODO: replace with real investments once announced.
-const INVESTMENTS: Array<{ name: string; desc: string; stage: string }> = [];
 
 export default function PortfolioPage() {
   return (
@@ -55,8 +44,8 @@ export default function PortfolioPage() {
                 key={product.name}
                 name={product.name}
                 href={product.href}
-                bg={product.bg}
-                logo={product.logo}
+                bg={product.background}
+                logo={product.logoHorizontal}
               />
             ))}
           </ProfileGrid>
@@ -82,9 +71,14 @@ export default function PortfolioPage() {
               {INVESTMENTS.map((investment) => (
                 <ProfileCard
                   key={investment.name}
+                  image={
+                    investment.logo
+                      ? { src: investment.logo, alt: investment.name }
+                      : undefined
+                  }
                   title={investment.name}
                   subtitle={investment.stage}
-                  desc={investment.desc}
+                  desc={`${investment.desc} (${investment.handle})`}
                 />
               ))}
             </ProfileGrid>

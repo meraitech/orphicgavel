@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Providers } from "@/components/providers";
 import { Navigation5 } from "@/components/navigation-5";
 import { siteConfig } from "@/lib/site";
-import "./globals.css";
+import "./../styles/globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -59,10 +59,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
-  ],
+  themeColor: "#00071c",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -74,7 +71,19 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="bg-background text-foreground flex min-h-dvh w-full flex-col overscroll-none font-sans">
         <Providers>
-          {children}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none fixed inset-0 z-0 opacity-15"
+          >
+            <img
+              src="/orphic/patern/pattern-02.svg"
+              alt=""
+              className="h-full w-full object-cover object-center"
+            />
+          </div>
+          <div className="relative z-10 flex min-h-dvh w-full flex-col">
+            {children}
+          </div>
           <Navigation5 />
         </Providers>
       </body>

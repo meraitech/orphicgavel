@@ -8,8 +8,9 @@ export function Providers({ children }: { children: ReactNode }): ReactNode {
   return (
     <ThemeProvider
       attribute="class"
-      defaultTheme="system"
-      enableSystem
+      defaultTheme="dark"
+      forcedTheme="dark"
+      enableSystem={false}
       disableTransitionOnChange
     >
       <ReducedMotionProvider>{children}</ReducedMotionProvider>

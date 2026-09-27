@@ -4,7 +4,15 @@ import { useState, useRef, type MouseEvent } from "react";
 import { WIDTHS } from "@/components/ui/tokens";
 import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "motion/react";
-import { ChevronUp, ChevronDown } from "lucide-react";
+import {
+  Briefcase,
+  ChevronDown,
+  ChevronUp,
+  Home,
+  Info,
+  Mail,
+  type LucideIcon,
+} from "lucide-react";
 
 export function Navigation5() {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -20,19 +28,23 @@ export function Navigation5() {
 
   const navItems: Array<{
     title: string;
-    image: string;
     href: string;
+    Icon: LucideIcon;
     tags?: string[];
   }> = [
-    { title: "Homepage", image: "/globe.svg", href: "/" },
-    { title: "About", image: "/globe.svg", href: "/about" },
-    { title: "Portfolio", image: "/globe.svg", href: "/portfolio" },
-    {
-      title: "Contact",
-      image: "/globe.svg",
-      href: "/contact",
-    },
-  ];
+      { title: "Homepage", href: "/", Icon: Home },
+      { title: "About", href: "/about", Icon: Info },
+      {
+        title: "Portfolio",
+        href: "/portfolio",
+        Icon: Briefcase,
+      },
+      {
+        title: "Contact",
+        href: "/contact",
+        Icon: Mail,
+      },
+    ];
 
   const activeItem =
     navItems.find((item) => item.href === pathname)?.title ?? "Homepage";
@@ -41,7 +53,7 @@ export function Navigation5() {
     { name: "LinkedIn", href: "#" },
     { name: "Instagram", href: "#" },
     { name: "Facebook", href: "#" },
-    { name: "Trok on X", href: "#" },
+    { name: "X", href: "#" },
   ];
 
   return (
@@ -54,7 +66,7 @@ export function Navigation5() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             onClick={() => setIsExpanded(false)}
-            className="fixed inset-0 bg-black/20 backdrop-blur-md z-50 cursor-pointer"
+            className="fixed inset-0 bg-blue-charcoal/60 backdrop-blur-md z-50 cursor-pointer"
           />
         )}
       </AnimatePresence>
@@ -68,7 +80,7 @@ export function Navigation5() {
         <div className={`${WIDTHS.compact} mx-auto pointer-events-auto`}>
           <div
             ref={navContainerRef}
-            className="rounded-2xl bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 shadow-xl overflow-hidden"
+            className="rounded-2xl bg-background border border-border shadow-xl overflow-hidden"
           >
             <AnimatePresence>
               {isExpanded && (
@@ -84,15 +96,13 @@ export function Navigation5() {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.3, delay: 0.1 }}
-                      className="w-10 h-10 bg-neutral-900 dark:bg-white rounded-sm flex items-center justify-center"
+                      className="w-10 h-10 bg-accent rounded-sm flex items-center justify-center overflow-hidden"
                     >
-                      <svg
-                        className="w-6 h-6 text-white dark:text-neutral-900"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                      >
-                        <path d="M3 3h8v8H3V3zm10 0h8v8h-8V3zM3 13h8v8H3v-8z" />
-                      </svg>
+                      <img
+                        src="/orphic/logo/logo-mark-light.svg"
+                        alt="Orphic Gavel"
+                        className="w-6 h-6"
+                      />
                     </motion.div>
 
                     <motion.div
@@ -101,12 +111,13 @@ export function Navigation5() {
                       transition={{ duration: 0.3, delay: 0.15 }}
                       className="flex items-center justify-between"
                     >
-                      <div className="text-2xl font-medium text-neutral-900 dark:text-white leading-tight">
-                        This is Trok
+                      <div className="text-2xl font-medium text-foreground leading-tight">
+                        Orphic Gavel
                       </div>
                       <a
-                        href="#"
-                        className="px-4 py-2 rounded-sm bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 text-xs font-medium hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-colors no-underline"
+                        href="/contact"
+                        onClick={(e) => navigate(e, "/contact")}
+                        className="px-4 py-2 rounded-sm bg-accent text-accent-foreground text-xs font-medium hover:bg-accent-strong transition-colors no-underline"
                       >
                         Let&apos;s talk
                       </a>
@@ -129,21 +140,16 @@ export function Navigation5() {
                             duration: 0.3,
                             delay: 0.25 + index * 0.05,
                           }}
-                          className={`flex items-center justify-between px-4 py-3 border-t hover:bg-neutral-100 dark:hover:bg-neutral-800/50 transition-colors no-underline group cursor-pointer ${
-                            index === navItems.length - 1
-                              ? "border-neutral-200 dark:border-neutral-800 border-b"
-                              : "border-neutral-200 dark:border-neutral-800"
-                          }`}
+                          className={`flex items-center justify-between px-4 py-3 border-t hover:bg-muted transition-colors no-underline group cursor-pointer ${index === navItems.length - 1
+                            ? "border-border border-b"
+                            : "border-border"
+                            }`}
                         >
                           <div className="flex items-center gap-3">
-                            <div className="w-16 h-12 bg-neutral-200 dark:bg-neutral-800 rounded-lg overflow-hidden shrink-0 group-hover:w-[84px] transition-all duration-200">
-                              <img
-                                src={item.image}
-                                alt={item.title}
-                                className="w-full h-full object-cover"
-                              />
+                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-muted text-foreground transition-colors group-hover:bg-accent group-hover:text-accent-foreground">
+                              <item.Icon className="h-5 w-5" />
                             </div>
-                            <span className="text-base font-light text-neutral-900 dark:text-white group-hover:text-neutral-600 dark:group-hover:text-neutral-300 transition-colors">
+                            <span className="text-base font-light text-foreground transition-colors">
                               {item.title}
                             </span>
                           </div>
@@ -153,7 +159,7 @@ export function Navigation5() {
                               {item.tags.map((tag) => (
                                 <span
                                   key={tag}
-                                  className="text-xs text-neutral-500 dark:text-neutral-400"
+                                  className="text-xs text-muted-foreground"
                                 >
                                   {tag}
                                 </span>
@@ -174,7 +180,7 @@ export function Navigation5() {
                         <a
                           key={link.name}
                           href={link.href}
-                          className="block text-xs text-neutral-500 dark:text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300 transition-colors no-underline"
+                          className="block text-xs text-muted-foreground hover:text-foreground transition-colors no-underline"
                         >
                           {link.name}
                         </a>
@@ -189,7 +195,7 @@ export function Navigation5() {
               onClick={() => setIsExpanded(!isExpanded)}
               className="w-full flex items-center justify-between px-6 py-4 cursor-pointer transition-colors"
             >
-              <div className="flex items-center gap-2 text-neutral-900 dark:text-white">
+              <div className="flex items-center gap-2 text-foreground">
                 {isExpanded ? (
                   <>
                     <ChevronDown className="w-5 h-5" />
@@ -203,7 +209,7 @@ export function Navigation5() {
                 )}
               </div>
 
-              <div className="text-sm font-medium text-neutral-500 dark:text-neutral-500">
+              <div className="text-sm font-medium text-muted-foreground">
                 {activeItem}
               </div>
             </button>

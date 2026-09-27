@@ -37,7 +37,7 @@ export function MediaCard({ name, bg, logo, href, children }: MediaCardProps): R
       />
       <div
         aria-hidden="true"
-        className="absolute inset-x-0 bottom-0 h-full bg-linear-to-t from-black/85 via-black/20 to-black/20"
+        className="absolute inset-x-0 bottom-0 h-full bg-linear-to-t from-blue-charcoal/90 via-blue-charcoal/25 to-transparent"
       />
       <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
         <div className="relative h-4">

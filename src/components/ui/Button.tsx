@@ -16,7 +16,7 @@ export function Button({
 }: ButtonProps): ReactNode {
   const styles =
     variant === "solid"
-      ? "bg-foreground text-background hover:opacity-90"
+      ? "bg-accent text-accent-foreground hover:bg-accent-strong"
       : "border-border text-foreground border hover:bg-muted";
   return (
     <a

@@ -27,8 +27,13 @@ const ORGANIZATION_JSON_LD = {
   description: siteConfig.description,
   address: {
     "@type": "PostalAddress",
+    streetAddress: "Tower 2, 17th Floor, Jl. Jend. Sudirman Kav. 52-53",
+    addressLocality: "Jakarta",
+    postalCode: "12190",
     addressCountry: "ID",
   },
+  email: "info@orphicgavel.com",
+  faxNumber: "+62 21 515 7799",
 };
 
 export default function Home() {

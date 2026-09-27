@@ -1,0 +1,87 @@
+/**
+ * ORPHIC COLOR SYSTEM — single source of truth.
+ *
+ * Layers (top to bottom):
+ *   1. BRAND RAMP — raw Orphic blues. Never use directly in components.
+ *   2. PUBLIC SEMANTIC TOKENS — the only vars components may consume
+ *      (`background`, `foreground`, `accent`, `muted`, `border`, `card`,
+ *      `globe-*`, …). Surfaces are derived from the ramp with `color-mix`
+ *      so every app reusing this file stays on-brand (no neutral-gray drift).
+ *   3. `@theme inline` — exposes every token as a Tailwind utility
+ *      (`bg-background`, `text-muted-foreground`, `bg-accent`,
+ *      `bg-twilight-blue`, `bg-globe-marker`, …).
+ *
+ * Theme: dark-only. `--background` is `--blue-charcoal` globally.
+ */
+
+:root {
+  /* ── 1. BRAND RAMP (raw Orphic blues) ─────────────────────────── */
+  --twilight-blue: #f0fdff;
+  --columbia-blue: #8bdef2;
+  --cerulean: #00a9d6;
+  --artyclick-ocean-blue: #004ee0;
+  --egyptian-blue: #0526af;
+  --gulf-blue: #000f4f;
+  --blue-charcoal: #00071c;
+
+  /* ── 2a. PUBLIC CORE ──────────────────────────────────────────── */
+  /* --background: var(--blue-charcoal); */
+  --background: black;
+  --foreground: var(--twilight-blue);
+
+  /* ── 2b. PUBLIC ACCENT + RING ─────────────────────────────────── */
+  --accent: var(--artyclick-ocean-blue);
+  --accent-foreground: var(--twilight-blue);
+  --accent-strong: var(--egyptian-blue);
+  --ring: var(--cerulean);
+
+  /* ── 2c. PUBLIC SURFACES (brand-derived, replace neutral grays) ─ */
+  --muted: var(--blue-charcoal);
+  --muted-foreground: var(--twilight-blue);
+  --border: rgba(75, 75, 75, 0.505);
+  --card: red;
+
+  /* ── 2d. PUBLIC GLOBE (consumed by `src/lib/color.ts` → cobe) ─── */
+  --globe-base: var(--accent);
+  --globe-marker: var(--accent);
+  --globe-glow: var(--accent);
+
+  /* ── 2e. PUBLIC BRAND GRADIENT (matches logo-mark-gradient.svg) ─ */
+  --gradient-orphic: radial-gradient(
+    circle at 85% 5%,
+    var(--twilight-blue) 0%,
+    var(--columbia-blue) 18%,
+    var(--cerulean) 32%,
+    var(--artyclick-ocean-blue) 55%,
+    var(--egyptian-blue) 72%,
+    var(--gulf-blue) 100%
+  );
+}
+
+@theme inline {
+  /* Brand ramp utilities: bg-twilight-blue, text-cerulean, … */
+  --color-twilight-blue: var(--twilight-blue);
+  --color-columbia-blue: var(--columbia-blue);
+  --color-cerulean: var(--cerulean);
+  --color-artyclick-ocean-blue: var(--artyclick-ocean-blue);
+  --color-egyptian-blue: var(--egyptian-blue);
+  --color-gulf-blue: var(--gulf-blue);
+  --color-blue-charcoal: var(--blue-charcoal);
+
+  /* Semantic utilities: bg-background, bg-accent, bg-card, … */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent-strong: var(--accent-strong);
+  --color-ring: var(--ring);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-card: var(--card);
+
+  /* Globe utilities (labels, rings, fallback chips) */
+  --color-globe-base: var(--globe-base);
+  --color-globe-marker: var(--globe-marker);
+  --color-globe-glow: var(--globe-glow);
+}

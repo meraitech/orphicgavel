@@ -62,8 +62,7 @@ export const SECTION_DESC = "text-muted-foreground mt-2 leading-relaxed";
 export const SECTION_INDEX = "text-muted-foreground font-mono text-xs";
 
 /** Surface card. */
-export const CARD =
-  "border-border bg-muted/40 rounded-lg border p-5";
+export const CARD = "border-border bg-card rounded-lg border p-5";
 
 /** Card title. */
 export const CARD_TITLE = "text-foreground text-base font-semibold";
@@ -73,7 +72,7 @@ export const CARD_DESC = "text-muted-foreground mt-2 text-sm leading-relaxed";
 
 /** Small status pill (e.g. "In development"). */
 export const STATUS_PILL =
-  "text-muted-foreground border-border rounded-full border px-2.5 py-1 font-mono text-[11px] whitespace-nowrap";
+  "text-muted-foreground border-border bg-muted rounded-full border px-2.5 py-1 font-mono text-[11px] whitespace-nowrap";
 
 /** Dashed empty-state box. */
 export const EMPTY_STATE =
@@ -84,7 +83,7 @@ export const EMPTY_STATE_TITLE = "text-foreground text-sm font-medium";
 
 /** Profile photo/monogram tile. Swap the monogram for an `img` when portraits arrive. */
 export const PROFILE_TILE =
-  "bg-foreground text-background relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-lg text-4xl font-semibold tracking-tight";
+  "bg-muted text-twilight-blue border-muted relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-lg border text-4xl";
 
 /** Profile card title (person or company name). */
 export const PROFILE_TITLE = "text-foreground text-base font-semibold";
@@ -102,9 +101,9 @@ export const ROW =
 /** Row label (mono). */
 export const ROW_LABEL = "text-muted-foreground font-mono text-xs";
 
-/** Row value. */
+/** Row value. Right-aligned since it sits on the right side of the row. */
 export const ROW_VALUE =
-  "text-foreground text-lg font-medium tracking-tight";
+  "text-foreground text-right text-lg font-medium tracking-tight";
 
 /** Simple link row (no label). */
 export const LINK_ROW = "border-border border-b py-4 first:border-t";

@@ -17,14 +17,10 @@ export const metadata: Metadata = {
     "Get in touch with PT Orphic Gavel Corp — founders, partners, and general inquiries.",
 };
 
-// TODO: replace with real contact details when ready.
-const EMAIL = "hello@orphicgavel.com";
+const EMAIL = "info@orphicgavel.com";
 
 const SOCIALS = [
-  { name: "LinkedIn", href: "#" },
-  { name: "Instagram", href: "#" },
-  { name: "Facebook", href: "#" },
-  { name: "X", href: "#" },
+  { name: "Instagram", href: "https://www.instagram.com/orphicgavel/" },
 ];
 
 export default function ContactPage() {
@@ -44,7 +40,16 @@ export default function ContactPage() {
             <Row label="Email" href={`mailto:${EMAIL}`}>
               {EMAIL}
             </Row>
-            <Row label="Location">Indonesia</Row>
+            <Row label="Address">
+              Indonesia Stock Exchange, Tower 2, 17th Floor,
+              <br />
+              Jl. Jend. Sudirman Kav. 52-53,
+              <br />
+              Jakarta 12190, INDONESIA
+            </Row>
+            <Row label="Fax" href="fax:+62215157799">
+              +62 21 515 7799
+            </Row>
           </RowList>
         </div>
 
