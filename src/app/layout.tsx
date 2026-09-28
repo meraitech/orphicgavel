@@ -40,6 +40,22 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  icons: {
+    icon: [
+      { url: "/orphic/logo/icon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/orphic/logo/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/orphic/logo/icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [
+      {
+        url: "/orphic/logo/apple-touch-icon.png",
+        sizes: "180x180",
+        type: "image/png",
+      },
+    ],
+    shortcut: "/favicon.ico",
+  },
+  manifest: "/manifest.webmanifest",
   openGraph: {
     type: "website",
     locale: siteConfig.locale,
@@ -47,11 +63,20 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     title: `${siteConfig.name} — Holding Company in Indonesia`,
     description: siteConfig.description,
+    images: [
+      {
+        url: "/orphic/logo/og.png",
+        width: 1200,
+        height: 630,
+        alt: `${siteConfig.name} — Holding Company in Indonesia`,
+      },
+    ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: `${siteConfig.name} — Holding Company in Indonesia`,
     description: siteConfig.description,
+    images: ["/orphic/logo/og.png"],
   },
 };
 
