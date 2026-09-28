@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     url: siteConfig.url,
     images: [
       {
-        url: "/orphic/logo/og.png",
+        url: "/seo/og.png",
         width: 1200,
         height: 630,
         alt: `${siteConfig.name} — Holding Company in Indonesia`,
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${siteConfig.name} — Holding Company in Indonesia`,
     description: siteConfig.description,
-    images: ["/orphic/logo/og.png"],
+    images: ["/seo/og.png"],
   },
 };
 
@@ -38,8 +38,8 @@ const ORGANIZATION_JSON_LD = {
   name: siteConfig.legalName,
   alternateName: siteConfig.name,
   url: siteConfig.url,
-  logo: `${siteConfig.url}/orphic/logo/og.png`,
-  image: `${siteConfig.url}/orphic/logo/og.png`,
+  logo: `${siteConfig.url}/seo/og.png`,
+  image: `${siteConfig.url}/seo/og.png`,
   description: siteConfig.description,
   address: {
     "@type": "PostalAddress",

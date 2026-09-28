@@ -42,13 +42,22 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/orphic/logo/icon-32.png", sizes: "32x32", type: "image/png" },
-      { url: "/orphic/logo/icon-192.png", sizes: "192x192", type: "image/png" },
-      { url: "/orphic/logo/icon-512.png", sizes: "512x512", type: "image/png" },
+      { url: "/seo/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/seo/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      {
+        url: "/seo/android-chrome-192x192.png",
+        sizes: "192x192",
+        type: "image/png",
+      },
+      {
+        url: "/seo/android-chrome-512x512.png",
+        sizes: "512x512",
+        type: "image/png",
+      },
     ],
     apple: [
       {
-        url: "/orphic/logo/apple-touch-icon.png",
+        url: "/seo/apple-touch-icon.png",
         sizes: "180x180",
         type: "image/png",
       },
@@ -65,7 +74,7 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     images: [
       {
-        url: "/orphic/logo/og.png",
+        url: "/seo/og.png",
         width: 1200,
         height: 630,
         alt: `${siteConfig.name} — Holding Company in Indonesia`,
@@ -76,7 +85,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${siteConfig.name} — Holding Company in Indonesia`,
     description: siteConfig.description,
-    images: ["/orphic/logo/og.png"],
+    images: ["/seo/og.png"],
   },
 };
 

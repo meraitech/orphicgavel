@@ -12,17 +12,17 @@ export default function manifest(): MetadataRoute.Manifest {
     theme_color: "#00071c",
     icons: [
       {
-        src: "/orphic/logo/icon-192.png",
+        src: "/seo/android-chrome-192x192.png",
         sizes: "192x192",
         type: "image/png",
       },
       {
-        src: "/orphic/logo/icon-512.png",
+        src: "/seo/android-chrome-512x512.png",
         sizes: "512x512",
         type: "image/png",
       },
       {
-        src: "/orphic/logo/apple-touch-icon.png",
+        src: "/seo/apple-touch-icon.png",
         sizes: "180x180",
         type: "image/png",
       },
